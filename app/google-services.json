@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "503463641713",
+    "firebase_url": "https://code-n-dash.firebaseio.com",
+    "project_id": "code-n-dash",
+    "storage_bucket": "code-n-dash.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503463641713:android:5b12a756bec68d19",
+        "android_client_info": {
+          "package_name": "com.example.tjgaming.individualproject3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503463641713-tppr39145glf9rsrnd7jbqfof7g0t4lc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClHPf1ZlAQXT2xHdPMrhlj3SG90Hzk_qE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
