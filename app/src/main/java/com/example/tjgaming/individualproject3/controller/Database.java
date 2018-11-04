@@ -1,10 +1,14 @@
 package com.example.tjgaming.individualproject3.controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.example.tjgaming.individualproject3.R;
 import com.example.tjgaming.individualproject3.model.Game;
 import com.example.tjgaming.individualproject3.model.User;
 import com.example.tjgaming.individualproject3.view.MainActivity;
@@ -97,27 +101,33 @@ public class Database {
         mDocRef.set(beatenGame);
     }
 
-    public void getChildStatistics() {
-
-        mCollectionRef = mFirestore.collection("Games" + "/" + getUserLoggedIn().getUid() + "/" + "Games Beaten");
-
-        mCollectionRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
-                    Game game = queryDocumentSnapshot.toObject(Game.class);
-
-                    gameList.add(game);
-                }
-            }
-        });
-    }
-
-    public List<Game> getGameList() {
-        return gameList;
-    }
-
     public FirebaseUser getUserLoggedIn() {
         return mFirebaseAuth.getCurrentUser();
+    }
+
+    public class AsyncChildStatsTask extends AsyncTask {
+
+        Activity activity;
+
+        public AsyncChildStatsTask(Activity activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            mCollectionRef = mFirestore.collection("Games" + "/" + getUserLoggedIn().getUid() + "/" + "Games Beaten");
+            mCollectionRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
+                        Game game = queryDocumentSnapshot.toObject(Game.class);
+
+                        gameList.add(game);
+                    }
+                    ((TextView)activity.findViewById(R.id.parent_child_statistics)).setText(gameList.toString());
+                }
+            });
+            return gameList;
+        }
     }
 }

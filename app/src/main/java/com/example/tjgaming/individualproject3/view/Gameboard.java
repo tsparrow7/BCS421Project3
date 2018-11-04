@@ -53,36 +53,101 @@ public class Gameboard extends View {
     }
 
     private void createLevelThree(Canvas canvas) {
-        rect.set(0,0,width/5,height/2);
-        bgPaint.setColor(getResources().getColor(R.color.colorAccent));
-        canvas.drawRect(0,0,width,height,bgPaint);
-        pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
-        pathPaint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(rect, pathPaint);
-        rect.set(width/5,(height/2 - width/5),width,height/2);
-        canvas.drawRect(rect,pathPaint);
+        if (DIFFICULTY.equals("Easy")) {
+            //Draw the background
+            bgPaint.setColor(getResources().getColor(R.color.colorAccent));
+            canvas.drawRect(0,0,width,height,bgPaint);
+
+            //Draw the path
+            rect.set(0,0,width/5,height/2);
+            pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
+            pathPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(rect, pathPaint);
+            rect.set(width/5,(height/2 - width/5),width,height/2);
+            canvas.drawRect(rect,pathPaint);
+            rect.set(width - width/5,0,width,height/2);
+            canvas.drawRect(rect,pathPaint);
+
+        } else {
+            //Draw the background
+            bgPaint.setColor(getResources().getColor(R.color.colorAccent));
+            canvas.drawRect(0,0,width,height,bgPaint);
+
+            //Draw the path
+            rect.set(0,width/20,width,(width/5 + width/20));
+            pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
+            pathPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(rect, pathPaint);
+            rect.set(width - width/5,width/5 + width/20,width,height/2 + width/20);
+            canvas.drawRect(rect,pathPaint);
+            rect.set(0,height/2 + width/20 - width/5,width,height/2 + width/20);
+            canvas.drawRect(rect,pathPaint);
+            rect.set(0,height/2 + width/20,width/5,height);
+            canvas.drawRect(rect,pathPaint);
+
+
+        }
     }
 
     private void createLevelTwo(Canvas canvas) {
-        rect.set(0,0,width/5,height/2);
-        bgPaint.setColor(getResources().getColor(R.color.colorAccent));
-        canvas.drawRect(0,0,width,height,bgPaint);
-        pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
-        pathPaint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(rect, pathPaint);
-        rect.set(width/5,(height/2 - width/5),width,height/2);
-        canvas.drawRect(rect,pathPaint);
+        if (DIFFICULTY.equals("Easy")){
+            //Draw the background
+            bgPaint.setColor(getResources().getColor(R.color.colorAccent));
+            canvas.drawRect(0,0,width,height,bgPaint);
+
+            //Draw the path
+            rect.set(0,width/20,width,(width/5 + width/20));
+            pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
+            pathPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(rect, pathPaint);
+            rect.set(width - width/5,width/5 + width/20,width,height/2 + width/20);
+            canvas.drawRect(rect,pathPaint);
+        } else {
+            //Draw the background
+            bgPaint.setColor(getResources().getColor(R.color.colorAccent));
+            canvas.drawRect(0,0,width,height,bgPaint);
+
+            //Draw the path
+            rect.set(0,width/20,width,(width/5 + width/20));
+            pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
+            pathPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(rect, pathPaint);
+            rect.set(width - width/5,width/5 + width/20,width,height/2 + width/20);
+            canvas.drawRect(rect,pathPaint);
+            rect.set(0,height/2 + width/20 - width/5,width,height/2 + width/20);
+            canvas.drawRect(rect,pathPaint);
+        }
     }
 
     private void createLevelOne(Canvas canvas) {
-        rect.set(0,0,width/5,height/2);
-        bgPaint.setColor(getResources().getColor(R.color.colorAccent));
-        canvas.drawRect(0,0,width,height,bgPaint);
-        pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
-        pathPaint.setStyle(Paint.Style.FILL);
-        canvas.drawRect(rect, pathPaint);
-        rect.set(width/5,(height/2 - width/5),width,height/2);
-        canvas.drawRect(rect,pathPaint);
+        if (DIFFICULTY.equals("Easy")) {
+            //Draw the background
+            bgPaint.setColor(getResources().getColor(R.color.colorAccent));
+            canvas.drawRect(0,0,width,height,bgPaint);
+
+            //Draw the path
+            rect.set(0,0,width/5,height/2);
+            pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
+            pathPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(rect, pathPaint);
+            rect.set(width/5,(height/2 - width/5),width,height/2);
+            canvas.drawRect(rect,pathPaint);
+        } else {
+            //Draw the background
+            bgPaint.setColor(getResources().getColor(R.color.colorAccent));
+            canvas.drawRect(0,0,width,height,bgPaint);
+
+            //Draw the path
+            rect.set(0,0,width/5,height/2);
+            pathPaint.setColor(getResources().getColor(R.color.colorPrimary));
+            pathPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRect(rect, pathPaint);
+            rect.set(width/5,height/2 - width/5,width,height/2);
+            canvas.drawRect(rect,pathPaint);
+            rect.set(width - width/5,height/2 - width/5,width,height);
+            canvas.drawRect(rect,pathPaint);
+
+        }
     }
 
     @Override

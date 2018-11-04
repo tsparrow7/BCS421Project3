@@ -54,7 +54,6 @@ public class GameActivity extends Activity {
 
         Gameboard.DIFFICULTY = game.getDifficulty();
         Gameboard.LEVEL = game.getLevel();
-        Log.i("GameActivity",game.getLevel());
         setContentView(R.layout.activity_game);
 
         mStrtDrg = new MyStrtDrggngLsntr();
@@ -75,7 +74,31 @@ public class GameActivity extends Activity {
         myGameboard = findViewById(R.id.game_board);
         myGameboard.invalidate();
 
-        correctCommands = new String[]{"down","right","empty","empty"};
+        if (Gameboard.DIFFICULTY.equals("Easy")) {
+
+            if (Gameboard.LEVEL.equals("Level 1")) {
+                correctCommands = new String[]{"down","right","empty","empty"};
+
+            } else if (Gameboard.LEVEL.equals("Level 2")) {
+                correctCommands = new String[]{"right","down","empty","empty"};
+
+            } else if (Gameboard.LEVEL.equals("Level 3")) {
+                correctCommands = new String[]{"down","right","up","empty"};
+            }
+
+        } else if (Gameboard.DIFFICULTY.equals("Hard")) {
+
+            if (Gameboard.LEVEL.equals("Level 1")) {
+                correctCommands = new String[]{"down","right","down","empty"};
+
+            } else if (Gameboard.LEVEL.equals("Level 2")) {
+                correctCommands = new String[]{"right","down","left","empty"};
+
+            } else if (Gameboard.LEVEL.equals("Level 3")) {
+                correctCommands = new String[]{"right","down","left","down"};
+            }
+        }
+
 
         (btn = findViewById(R.id.begin_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +108,7 @@ public class GameActivity extends Activity {
                 commands = getCommands();
                 animatorSet = new AnimatorSet();
                 animators = new ObjectAnimator[commands.length];
+                boolean down = false;
 
                 for (int i = 0; i < commands.length; i++) {
 
@@ -96,7 +120,12 @@ public class GameActivity extends Activity {
                             animators[i] = playUpAnimation();
                             break;
                         case "down":
-                            animators[i] = playDownAnimation();
+                            if (down) {
+                                animators[i] = playDoubleDownAnimation();
+                            } else {
+                                animators[i] = playDownAnimation();
+                                down = true;
+                            }
                             break;
                         case "right":
                             animators[i] = playRightAnimation();
@@ -225,6 +254,10 @@ public class GameActivity extends Activity {
 
     private ObjectAnimator playDownAnimation() {
         return ObjectAnimator.ofFloat(imageView,"y",(myGameboard.height/3f)).setDuration(1000);
+    }
+
+    private ObjectAnimator playDoubleDownAnimation() {
+        return ObjectAnimator.ofFloat(imageView,"y",myGameboard.height/1.2f).setDuration(1000);
     }
 
     private String[] getCommands() {
